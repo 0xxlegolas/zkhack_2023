@@ -18,20 +18,18 @@ use anyhow::Context;
 use bonsai_ethereum_relay::sdk::client::{CallbackRequest, Client};
 use clap::Parser;
 use ethers::{types::Address, utils::id};
-use methods::FIBONACCI_ID;
+use methods::CREDIT_SCORING_ID;
 use risc0_zkvm::sha::Digest;
 
-/// Exmaple code for sending a REST API request to the Bonsai relay service to
-/// requests, execution, proving, and on-chain callback for a zkVM guest
-/// application.
+
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about)]
 struct Args {
-    /// Adress for the BonsaiStarter application contract.
+    /// Adress for the CreditScore application contract.
     address: Address,
 
-    /// Input N for calculating the Nth Fibonacci number.
-    number: u32,
+    /// Input an address for calculating credit score
+    user: Address,
 
     /// Bonsai Relay API URL.
     #[arg(long, env, default_value = "http://localhost:8080")]
@@ -53,20 +51,19 @@ async fn main() -> anyhow::Result<()> {
     )
     .context("Failed to initialize the relay client")?;
 
-    // Initialize the input for the FIBONACCI guest.
-    let input = U256::from(args.number).abi_encode();
+    // Initialize the input for the CreditScore guest.
+    let input = Address::from(args.address).0.abi_encode();
 
     // Set the function selector of the callback function.
-    let function_signature = "storeResult(uint256,uint256)";
+    let function_signature = "storeResult(address,uint256)";
     let function_selector = id(function_signature);
 
     // Create a CallbackRequest for your contract
-    // example: (contracts/BonsaiStarter.sol).
     let request = CallbackRequest {
         callback_contract: args.address.into(),
         function_selector,
         gas_limit: 3000000,
-        image_id: Digest::from(FIBONACCI_ID).into(),
+        image_id: Digest::from(CREDIT_SCORING_ID).into(),
         input,
     };
 

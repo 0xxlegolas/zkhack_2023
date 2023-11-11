@@ -55,13 +55,13 @@ It also provides an SDK in Rust that can be used to interact with it. You can ch
 1. Send a callback request directly to the Relay by running:
 
     ```bash
-    cargo run --example offchain_request "$APP_ADDRESS" 10
+    cargo run --example offchain_request "$APP_ADDRESS" 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
     ```
 
 2. Check the relayed result:
 
     ```bash
-    cast call "$APP_ADDRESS" 'fibonacci(uint256)' 10
+    cast call "$APP_ADDRESS" 'getCreditScore(uint256)' 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
     ```
 
 This example's arguments are the `BonsaiStarter` contract address and the number, N, to compute the Nth Fibonacci number.
@@ -74,13 +74,13 @@ The Relay source code with its SDK can be found in the [risc0/risc0] github repo
 1. Send a transaction to the starter contract:
 
     ```bash
-    cast send --private-key 0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d --gas-limit 100000 "$APP_ADDRESS" 'calculateFibonacci(uint256)' 5
+    cast send --private-key 0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d --gas-limit 100000 "$APP_ADDRESS" 'calculateCreditScore(address)' 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
     ```
 
 2. Check the relayed result:
 
     ```bash
-    cast call "$APP_ADDRESS" 'fibonacci(uint256)' 5
+    cast call "$APP_ADDRESS" 'getCreditScore(address)' 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
     ```
 
 ### Deploy a new version of your application:
