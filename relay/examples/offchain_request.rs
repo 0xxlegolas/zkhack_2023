@@ -20,7 +20,7 @@ use clap::Parser;
 use ethers::{types::Address, utils::id};
 use methods::CREDIT_SCORING_ID;
 use risc0_zkvm::sha::Digest;
-
+use risc0_zkvm::ExecutorEnv;
 
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about)]
@@ -53,6 +53,13 @@ async fn main() -> anyhow::Result<()> {
 
     // Initialize the input for the CreditScore guest.
     let input = Address::from(args.address).0.abi_encode();
+
+    let data = include_str!("../../input/input.json");
+    let json_input = ExecutorEnv::builder()
+        .write(&data).unwrap()
+        .write(&input).unwrap()
+        .build()
+        .unwrap();
 
     // Set the function selector of the callback function.
     let function_signature = "storeResult(address,uint256)";

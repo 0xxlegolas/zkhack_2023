@@ -14,8 +14,9 @@
 
 #![no_main]
 
+use json::parse;
 use std::io::Read;
-
+use json::parse;
 use ethabi::{ethereum_types::U256, ParamType, Token, Address};
 use risc0_zkvm::guest::env;
 
@@ -56,13 +57,25 @@ fn calculate_credit_score(_user: Address) -> U256 {
 }
 
 fn main() {
+    // let data: String = env::read();
+    // let data = parse(&data).unwrap();
+    // let proven_val = data["critical_data"].as_u32().unwrap();
+
+
     // Read data sent from the application contract.
     let mut input_bytes = Vec::<u8>::new();
     env::stdin().read_to_end(&mut input_bytes).unwrap();
     // Type array passed to `ethabi::decode_whole` should match the types encoded in
     // the application contract.
     let input = ethabi::decode_whole(&[ParamType::Address], &input_bytes).unwrap();
-    let user:Address = input[0].clone().into_address().unwrap();
+    let user:Address = input[0].clone().into_address().unwrap();    
+
+    // //Get the data from the json file
+    // let json_data = ethabi::decode_whole(&[ParamType::String], &input_bytes).unwrap();
+    // let proven_val = parse(&json_data).unwrap();
+    
+
+    // println!("User address: {:?}", json_data["critical_data"].as_u32().unwrap());
 
     // Run the computation.
     let result = calculate_credit_score(user);

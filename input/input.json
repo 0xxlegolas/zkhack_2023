@@ -1,0 +1,19 @@
+{
+    "boolean_field": true,
+    "critical_data": 47,
+    "obj_field": {
+        "string_subfield": "hello world",
+        "array_subfield": [
+            "more",
+            "example",
+            "text"
+        ]
+    },
+    "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266": {
+        "total_transactions": 100,
+        "successful_transactions": 80,
+        "failed_transactions": 20,
+        "loan_repayments": 50,
+        "defaults": 10
+    }
+}
