@@ -19,3 +19,4 @@ target/
 
 # Misc
 .idea
+blockchain-frontend/node_modules/

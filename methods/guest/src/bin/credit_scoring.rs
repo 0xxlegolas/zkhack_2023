@@ -18,7 +18,8 @@ use std::io::Read;
 
 use ethabi::{ethereum_types::U256, ParamType, Token, Address};
 use risc0_zkvm::guest::env;
-
+use rand::Rng;  // Import the Rng trait
+use rand::distributions::{Distribution, Uniform};
 risc0_zkvm::guest::entry!(main);
 
 struct UserData {
@@ -32,15 +33,25 @@ struct UserData {
 }
 
 fn calculate_credit_score(_user: Address) -> U256 {
+
+    // Randomize the data for the user Since I could not read it from local
+    let mut rng = rand::thread_rng(); // Create a random number generator
+    // Randomize total_transactions between 50 and 150 for example
+    let total_transactions: u32 = rng.gen_range(50..=150);
+
+    // Randomize account_age_days between 100 and 1000 for example
+    let account_age_dist = Uniform::from(100..=1000);
+    let account_age_days: u32 = account_age_dist.sample(&mut rng);
+
     //To do read this from json file
     let address_data = UserData {
-        total_transactions: 100,
+        total_transactions,
         successful_transactions: 80,
         failed_transactions: 20,
         loan_repayments: 50,
         defaults: 10,
         average_transaction_value: 500.0, // Example value
-        account_age_days: 365, // Example value
+        account_age_days, // Example value
     };
 
     let success_rate = if address_data.total_transactions > 0 {
