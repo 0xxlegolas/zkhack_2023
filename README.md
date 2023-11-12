@@ -1,6 +1,6 @@
-## Credit Scoring Using ZKP 🌟 
+## ZKreditGuard 🌟 
 
-**ZKreditGuard** - A Simple Credit Scoring System built on RISC Zero platform
+A Simple Credit Scoring System built on RISC Zero platform
 
 ### Overview 
 This implementation mainly focusses on utilizing the RISC Zero platform and integrating Bonsai with Ethereum smart contracts, this project moves complex mathematical computations off-chain, ensuring both efficiency and user data privacy.
