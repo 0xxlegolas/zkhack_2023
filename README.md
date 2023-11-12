@@ -1,6 +1,6 @@
 ## Credit Scoring Using ZKP 🌟 
 
-A Simple Credit Scoring System built on RISC Zero platform
+**ZKreditGuard** - A Simple Credit Scoring System built on RISC Zero platform
 
 ### Overview 
 This implementation mainly focusses on utilizing the RISC Zero platform and integrating Bonsai with Ethereum smart contracts, this project moves complex mathematical computations off-chain, ensuring both efficiency and user data privacy.
@@ -19,10 +19,10 @@ Using ZKP, the user data can be private and the user can choose to expose certai
 By shifting computationally intensive logic off-chain, our system can handle complex calculations without overburdening the blockchain. This ensures not only robustness in computational capabilities but also efficiency in on-chain operations. The on-chain component focuses on proving the integrity of off-chain computations and maintaining state information, significantly reducing gas costs.
 
 ### Key Features 📌
-User-Centric Privacy: Empower users with control over their personal and financial data.
-Efficient On-Chain Verification: Leverage ZKP for on-chain verification of off-chain computations.
-Scalability and Reduced Costs: Minimize on-chain footprint, reducing gas fees and enhancing scalability.
-Transparent Credit Scoring: Introduce transparency into credit scoring processes in the blockchain ecosystem.
+**User-Centric Privacy**: Empower users with control over their personal and financial data.
+**Efficient On-Chain Verification**: Leverage ZKP for on-chain verification of off-chain computations.
+**Scalability and Reduced Costs**: Minimize on-chain footprint, reducing gas fees and enhancing scalability.
+**Transparent Credit Scoring**: Introduce transparency into credit scoring processes in the blockchain ecosystem.
 
 ### Future Enhancements  ✨
 Data Source Expansion: Integrate more data sources for comprehensive credit scoring.
